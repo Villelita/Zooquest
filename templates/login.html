@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- AOS Animate on Scroll -->
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init();
+</script>
+
+<link rel="stylesheet" href="/static/css/login.css">
+
+<!-- Hero Section -->
+<section class="section green lighten-4" id="hero">
+
+  <div class="container">
+    <div class="card login-card z-depth-3">
+      <h5 class="login-header">Log in to ZOOQUEST!</h5>
+      <form action="/login" method="POST">
+        <div class="input-field">
+          <input id="correo" name="correo" type="email" class="validate" required>
+          <label for="correo">Email</label>
+        </div>
+
+        <div class="input-field">
+          <input id="password" name="password" type="password" class="validate" required>
+          <label for="password">Password</label>
+        </div>
+
+        <div class="center-align">
+          <button type="submit" class="btn btn-login waves-effect waves-light">Log In</button>
+          <p class="login-text">Don't have an account? <a href="{{ url_for('register') }}">Register here</a></p>
+        </div>
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

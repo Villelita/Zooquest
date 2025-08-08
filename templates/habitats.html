@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+
+<link rel="stylesheet" href="/static/css/habitats.css">
+
+<!-- Título con tarjeta y animación -->
+<div data-aos="zoom-in" class="title-wrapper">
+  <div class="title-card z-depth-4">
+    <h3>Habitats</h3>
+  </div>
+</div>
+
+<div class="habitat-card" data-aos="fade-left" data-aos-delay="400">
+  <div class="card blue-card z-depth-4">
+    <div class="card-image">
+      <img src="/static/img/oceano.png" alt="Ocean">
+    </div>
+    <div class="card-content">
+      <span class="card-title">Ocean</span>
+      <p class="textoHabitats">
+        The largest marine habitat on the planet. Dolphins, sharks, turtles, and thousands of aquatic species live here.
+      </p>
+      <a href="{{ url_for('oceano') }}" class="btn blue-btn right">Go!</a>
+    </div>
+  </div>
+</div>
+
+<div class="habitat-card" data-aos="fade-left" data-aos-delay="200">
+  <div class="card teal-card z-depth-4">
+    <div class="card-image">
+      <img src="/static/img/artico.png" alt="Arctic">
+    </div>
+    <div class="card-content">
+      <span class="card-title">Arctic</span>
+      <p class="textoHabitats">
+       A world of ice and freezing winds. Polar bears, walruses, and arctic foxes survive in this cold habitat.
+      </p>
+      <a href="{{ url_for('artico') }}" class="btn teal-btn right">Go!</a>
+    </div>
+  </div>
+</div>
+<div class="habitat-card" data-aos="fade-left">
+  <div class="card green-card z-depth-4">
+    <div class="card-image">
+      <img src="/static/img/cartoon-background-jungle-forest-free-video.jpg" alt="Jungle">
+    </div>
+    <div class="card-content">
+      <span class="card-title">Tropical Jungle</span>
+      <p class="textoHabitats">
+        Warm and humid ecosystem with great biodiversity. Home to jaguars, monkeys, and exotic birds.
+      </p>
+      <a href="{{ url_for('selva') }}" class="btn green-btn right">Go!</a>
+    </div>
+  </div>
+</div>
+
+
+<div class="habitat-card" data-aos="fade-left" data-aos-delay="100">
+  <div class="card orange-card z-depth-4">
+    <div class="card-image">
+      <img src="/static/img/sabana.png" alt="Savanna">
+    </div>
+    <div class="card-content">
+      <span class="card-title">African Savanna</span>
+      <p class="textoHabitats">
+        Warm plains with scattered trees. Lions, zebras, and elephants live here.
+      </p>
+      <a href="{{ url_for('sabana') }}" class="btn orange-btn right">Go!</a>
+    </div>
+  </div>
+</div>
+
+
+<div class="habitat-card" data-aos="fade-left" data-aos-delay="300">
+  <div class="card purple-card z-depth-4">
+    <div class="card-image">
+      <img src="/static/img/desierto.png" alt="Desert">
+    </div>
+    <div class="card-content">
+      <span class="card-title">Desert</span>
+      <p class="textoHabitats">
+        Arid and extreme conditions. Home to camels, reptiles, and scorpions
+      <a href="{{ url_for('desierto') }}" class="btn purple-btn right">Go!</a>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+{% endblock %}

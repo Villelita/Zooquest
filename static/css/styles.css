@@ -1,0 +1,108 @@
+/* Fuente para todo el sitio */
+* {
+  font-family: 'Luckiest Guy', cursive !important;
+  letter-spacing: 0.5px;
+}
+
+/* Ajuste general */
+  
+body {
+  font-family: 'Luckiest Guy', cursive !important;
+  background-image: url('/static/img/cartoon-background-jungle-forest-free-video.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  margin: 0;
+  padding: 0;
+  color: #2e7d32;
+}
+
+#welcome{
+  margin-top: 10px;
+}
+
+#explora{
+    margin-bottom: 40px;
+    border-radius: 40px;
+}
+
+/* Hero section */
+#hero {
+  padding: 60px 0;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  border-radius: 40px;
+}
+
+/* Títulos grandes */
+h1, h2, h3 {
+  color: #1b5e20;
+}
+
+p{
+   color: #1b7121
+}
+
+/* Botón de llamada a la acción */
+.btn-large {
+  font-size: 1.4rem;
+  border-radius: 12px;
+}
+
+/* Tarjetas */
+.card {
+  margin-bottom: 30px;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.card-image img {
+  height: 200px;
+  object-fit: cover;
+}
+
+/* Separación entre tarjetas */
+.row .col {
+  margin-bottom: 20px;
+}
+
+/* Footer */
+footer {
+  padding-top: 40px;
+  border-top: 5px dashed #a5d6a7;
+}
+
+footer h5, footer p {
+  color: #c8e6c9;
+}
+
+footer .btn-floating {
+  margin: 0 5px;
+}
+
+nav p{
+color: #1b5e20;
+}
+
+#tarjeta1:hover{
+cursor: pointer;
+transform: translateY(-40px);
+}
+
+
+#tarjeta2:hover{
+cursor: pointer;
+transform: translateY(-40px);
+
+}
+
+#tarjeta3:hover{
+cursor: pointer;
+transform: translateY(-40px);
+}
+
+
+#footerfoo{
+background: linear-gradient(135deg, #4caf50, #1b5e20);
+}

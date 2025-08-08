@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- AOS Animate on Scroll -->
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init();
+</script>
+
+<link rel="stylesheet" href="/static/css/register.css">
+
+<!-- Hero Section -->
+<section class="section green lighten-4" id="hero">
+
+  <div class="container">
+    <div class="card form-card z-depth-3">
+      <h5 class="form-header">Create your account!</h5>
+      <form action="/register" method="POST">
+        <div class="input-field">
+          <input id="nombre" name="nombre" type="text" class="validate" required>
+        <label for="nombre">Name</label>
+        </div>
+
+        <div class="input-field">
+          <input id="correo" name="correo" type="email" class="validate" required>
+        <label for="correo">Email</label>
+        </div>
+
+        <div class="input-field">
+          <input id="password" name="password" type="password" class="validate" required>
+        <label for="password">Password</label>
+        </div>
+
+        <div class="input-field">
+          <input id="confirm_password" name="confirm_password" type="password" class="validate" required>
+        <label for="confirm_password">Confirm Password</label>
+        </div>
+
+        <div class="input-field">
+          <input id="fecha_nacimiento" name="fecha_nacimiento" type="date" class="validate" required>
+        <label for="fecha_nacimiento">Date of Birth</label>
+        </div>
+
+        <div class="center-align">
+          <button type="submit" class="btn btn-custom waves-effect waves-light">Register</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

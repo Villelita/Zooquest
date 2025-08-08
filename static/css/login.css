@@ -1,0 +1,34 @@
+ .login-card {
+      margin-top: 60px;
+      padding: 30px;
+      border-radius: 16px;
+      animation: fadeIn 1s ease-out;
+    }
+
+    .login-header {
+      text-align: center;
+      color: #0277bd;
+      font-weight: bold;
+      margin-bottom: 30px;
+    }
+
+    .input-field input[type="email"],
+    .input-field input[type="password"] {
+      border-bottom: 2px solid #4caf50;
+      box-shadow: none;
+    }
+
+    .btn-login {
+      background-color: #4caf50;
+      border-radius: 12px;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn-login:hover {
+      background-color: #43a047;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }

@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- AOS Animate on Scroll -->
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init();
+</script>
+
+<!-- Hero Section -->
+<section class="section green lighten-4" id="hero">
+  <div class="container center" id="welcome" data-aos="fade-up" data-aos-duration="1200">
+    <h1 class="teal-text text-darken-4" style="font-size: 4rem;">Explore the Animal World!</h1>
+    <p class=" text-accent-4 flow-text">Learn, play, and discover with ZooQuest</p>
+    <a href="#explora" class="btn-large dark accent-3 z-depth-2 pulse" style="margin-top: 20px;">Start Adventure!</a>
+  </div>
+</section>
+
+<!-- Sección de Exploración -->
+<section id="explora" class="section white">
+  <div class="container">
+    <div class="row center">
+      <div class="col s12" data-aos="fade-right" data-aos-duration="1000">
+        <h3 class="teal-text text-darken-3">What do you want to explore today?</h3>
+      </div>
+    </div>
+
+    <a href="{{ url_for('habitats') }}">
+        <div class="row" style="margin-top: 30px;">
+          <div class="col s12 m4" data-aos="zoom-in-up" data-aos-delay="100" id="tarjeta1">
+            <div class="card hoverable lime lighten-5 z-depth-4">
+              <div class="card-image">
+                <img src="/static/img/cartoon-background-jungle-forest-free-video.jpg" alt="hábitats">
+              </div>
+              <div class="card-content center">
+                <span class="card-title teal-text text-darken-3">Habitats</span>
+                <p>Discover where animals live around the world.</p>
+              </div>
+            </div>
+          </div>
+      </a>
+      
+    <a href="{{ url_for('asistente') }}">
+      <div class="col s12 m4" data-aos="zoom-in-up" data-aos-delay="200" id="tarjeta2">
+        <div class="card hoverable lime lighten-5 z-depth-4">
+          <div class="card-image">
+            <img src="/static/img/cartoon-background-jungle-forest-free-video.jpg" alt="juegos">
+          </div>
+          <div class="card-content center">
+            <span class="card-title teal-text text-darken-3">Assistant</span>
+            <p>the voice of the jungle, your personal bot assistant</p>
+          </div>
+        </div>
+      </div>
+    </a>
+
+    <a href="{{ url_for('ver_cromos') }}">
+      <div class="col s12 m4" data-aos="zoom-in-up" data-aos-delay="300" id="tarjeta3">
+        <div class="card hoverable lime lighten-5 z-depth-4">
+          <div class="card-image">
+            <img src="/static/img/cartoon-background-jungle-forest-free-video.jpg" alt="curiosidades">
+          </div>
+          <div class="card-content center">
+            <span class="card-title teal-text text-darken-3">CARDS</span>
+            <p>Did you know that some animals can change color?
+            </p>
+          </div>
+        </div>
+      </div>
+    </a>
+    
+    </div>
+  </div>
+</section>
+{% endblock %}

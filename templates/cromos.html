@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- AOS Animate on Scroll -->
+ <link rel="stylesheet" href="/static/css/cromos.css">
+
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init();
+</script>
+
+<!-- Hero Section -->
+<section class="section green lighten-4" id="hero">
+  <div class="container center" id="welcome" data-aos="fade-up" data-aos-duration="1200">
+    <h1 class="teal-text text-darken-4" style="font-size: 4rem;">CARDS!</h1>
+    <p class=" text-accent-4 flow-text">Here your cards are stored</p>
+  </div>
+</section>
+
+<div class="juegos-grid">
+  {% for cromo in cromos %}
+  <div class="flip-card" data-aos="zoom-in">
+    <div class="flip-card-inner {{ cromo.color }}">
+      <div class="flip-card-front">
+        <img src="{{ cromo.image }}" alt="{{ cromo.name }}">
+      </div>
+      <div class="flip-card-back">
+        <h3 class="cromo-name">{{ cromo.name }}</h3>
+        <p >{{ cromo.description }}</p>
+        <p class="cromo-habitat"><strong>Habitat:</strong> {{ cromo.habitat }}</p>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+
+</section>
+{% endblock %}

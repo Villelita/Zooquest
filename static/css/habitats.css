@@ -1,0 +1,190 @@
+  .habitat-card {
+      margin: 2rem 0;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .card {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      overflow: hidden;
+      width: 100%;
+    }
+
+    .card-image img {
+      width: 200px;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .card-content {
+      text-align: right;
+      color: #ffe082; /* Texto llamativo */
+      padding-left: 1rem;
+    }
+
+    .card-title {
+      font-weight: bold;
+      font-size: 1.5rem;
+      color: #ffffff;
+      text-shadow: 4px 5px 5px rgba(0,0,0,0.62);
+    }
+
+    .blue-card {
+      background: linear-gradient(135deg, #2196f3, #0d47a1);
+    }
+
+    .green-card {
+      background: linear-gradient(135deg, #4caf50, #1b5e20);
+    }
+
+    .orange-card {
+      background: linear-gradient(135deg, #ff9800, #e65100);
+    }
+
+    .teal-card {
+      background: linear-gradient(135deg, #ffffff, #8d8d8d);
+    }
+
+    .purple-card {
+      background: linear-gradient(135deg, #ffd324, #e0ba20);
+    }
+
+
+    .textoHabitats{
+      color: white;
+      text-shadow: 4px 5px 5px rgba(0,0,0,0.62);
+    }
+
+    .btn {
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin-top: 10px;
+  padding: 0 25px;
+}
+
+/* Botones específicos */
+.green-btn {
+  background-color: #2e7d32; /* verde oscuro */
+  color: #c8e6c9;
+}
+
+.green-btn:hover {
+  background-color: #34ca3e;
+  transform: scale(1.1);
+  box-shadow: 0 6px 15px rgba(53, 213, 64, 0.6);
+}
+
+.orange-btn {
+  background-color: #d35f00; /* naranja fuerte */
+  color: #fff3e0;
+}
+
+.orange-btn:hover {
+  background-color: #ff7225;
+  transform: scale(1.1);
+  box-shadow: 0 6px 15px rgba(255, 124, 53, 0.6);
+}
+
+.teal-btn {
+  background-color: #a5a5a5; /* teal oscuro */
+  color: #ffffff;
+}
+
+.teal-btn:hover {
+  background-color: #e5e5e5;
+  transform: scale(1.1);
+  box-shadow: 0 6px 15px rgba(255, 255, 255, 0.6);
+}
+
+.purple-btn {
+  background-color: #dfbb17; /* púrpura oscuro */
+  color: #fff3e5;
+}
+
+.purple-btn:hover {
+  background-color: #ffde49;
+  transform: scale(1.1);
+  box-shadow: 0 6px 15px rgba(255, 247, 0, 0.6);
+}
+
+.blue-btn {
+  background-color: #1565c0; /* azul oscuro */
+  color: #d0eaff;
+}
+
+.blue-btn:hover {
+  background-color: #3b85f5;
+  transform: scale(1.1);
+  box-shadow: 0 6px 15px rgba(42, 127, 255, 0.6);
+}
+
+/* Título con tarjeta */
+.title-wrapper {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.title-card {
+  background: linear-gradient(to right, #1b5e20, #3a893c, #439c46, #4caf50, #439c46, #3a893c,#1b5e20);
+  padding: 2rem 4rem;
+  border-radius: 15px;
+  box-shadow: 7px 7px 10px rgba(0,0,0,0.3);
+}
+
+.title-card h3 {
+  margin: 0;
+  font-size: 3rem;
+  font-weight: bold;
+  color: #ffffff;
+  letter-spacing: 2px;
+  text-align: center;
+  text-shadow: 4px 5px 2px rgba(0,0,0,0.62);
+}
+
+
+
+.card-image img {
+  width: 100%;
+  height: auto;
+  max-height: 200px; /* o el máximo que desees en desktop */
+  object-fit: cover;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
+
+
+/* Para móviles: tarjeta vertical y la imagen arriba */
+@media (max-width: 768px) {
+  .card {
+    flex-direction: column;
+    max-width: 100%;
+    min-width: 100%;
+  }
+
+  .card-image {
+    width: 100%;
+    flex: none;
+  }
+
+  .card-image img {
+    max-height: none; /* para que no limite la altura */
+  }
+}
+
+/* Para desktop: limitar ancho del contenedor de imagen */
+@media (min-width: 769px) {
+  .card {
+    max-width: 100%;
+    flex-direction: row;
+  }
+
+  .card-image {
+    flex: 0 0 50%; /* fijo ancho imagen */
+  }
+}

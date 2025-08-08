@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<link rel="stylesheet" href="/static/css/oceano.css">
+
+<!-- Plyr CSS -->
+<link rel="stylesheet" href="https://cdn.plyr.io/3.7.2/plyr.css" />
+
+<!-- Plyr JS -->
+<script src="https://cdn.plyr.io/3.7.2/plyr.polyfilled.js"></script>
+
+
+<!-- AOS Animate on Scroll -->
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init();
+</script>
+
+<section>
+    <div class="juegos-grid">
+        <div class="habitat-card" data-aos="zoom-in">
+            <div class="card yellow-card z-depth-4 yellow lighten-4">
+                <div class="card-image">
+                    <img src="{{ animal.imagen }}" alt="{{ animal.nombre }}">
+                </div>
+                <div class="card-content">
+                    <span id="tituloanimal" class="yellow-text text-darken-4 card-title center">{{ animal.nombre }}</span>
+                    <div style="border-radius: 50px;">
+                        <audio class="js-player" controls>
+                            <source src="{{ animal.audio }}" type="audio/mpeg" />
+                        </audio>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="habitat-card" data-aos="zoom-in" data-aos-delay="100">
+            <div class="card orange-card z-depth-4 yellow lighten-4">
+                <div class="card-content">
+                    <span class="yellow-text text-darken-4 card-title">Info Ship</span>
+                    <p class="textoHabitats yellow-text text-darken-2">
+                        {{ animal.descripcion }}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+  const players = Plyr.setup('.js-player');
+</script>
+{% endblock %}

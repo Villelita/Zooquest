@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<link rel="stylesheet" href="/static/css/juegos.css">
+
+<!-- Título -->
+<div data-aos="zoom-in" class="title-wrapper">
+  <div class="title-card z-depth-4">
+    <h3>Minigames</h3>
+  </div>
+</div>
+
+<!-- Contenedor cuadrícula -->
+<div class="juegos-grid">
+  <div class="habitat-card" data-aos="zoom-in">
+    <div class="card green-card z-depth-4">
+      <div class="card-image">
+        <img src="/static/img/cartoon-background-jungle-forest-free-video.jpg" alt="Selva">
+      </div>
+      <div class="card-content">
+        <span class="card-title">Memory Game</span>
+        <p class="textoHabitats">
+          Warm and humid ecosystem with great biodiversity. Home to jaguars, monkeys, and exotic birds.
+        </p>
+        <a href="#" class="btn green-btn right">Go!</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="habitat-card" data-aos="zoom-in" data-aos-delay="100">
+    <div class="card orange-card z-depth-4">
+      <div class="card-image">
+        <img src="/static/img/cartoon-background-jungle-forest-free-video.jpg" alt="Sabana">
+      </div>
+      <div class="card-content">
+        <span class="card-title">Info Ship</span>
+        <p class="textoHabitats">
+          Warm plains with scattered trees. Lions, zebras, and elephants live here.
+        </p>
+        <a href="#" class="btn orange-btn right">Go!</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="habitat-card" data-aos="zoom-in" data-aos-delay="200">
+    <div class="card teal-card z-depth-4">
+      <div class="card-image">
+        <img src="/static/img/cartoon-background-jungle-forest-free-video.jpg" alt="Ártico">
+      </div>
+      <div class="card-content">
+        <span class="card-title">Word Search</span>
+        <p class="textoHabitats">
+          A world of ice and cold. Polar bears, walruses, and arctic foxes survive in this habitat.
+        </p>
+        <a href="#" class="btn teal-btn right">Go!</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="habitat-card" data-aos="zoom-in" data-aos-delay="300">
+    <div class="card blue-card z-depth-4">
+      <div class="card-image">
+        <img src="/static/img/cartoon-background-jungle-forest-free-video.jpg" alt="Océano">
+      </div>
+      <div class="card-content">
+        <span class="card-title">Crossword</span>
+        <p class="textoHabitats">
+          The largest marine habitat on the planet. Dolphins, sharks, turtles, and more species live here.
+        </p>
+        <a href="#" class="btn blue-btn right">Go!</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

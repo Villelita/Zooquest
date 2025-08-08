@@ -1,0 +1,241 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- AOS Animate on Scroll -->
+<link rel="stylesheet" href="/static/css/asistente.css">
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init();
+</script>
+
+<div id="welcome-screen" class="welcome-screen">
+  <h1 class="welcome-title">🐾 Welcome to ZooQuest</h1>
+  <p class="welcome-sub">Your personalized conversational assistant</p>
+</div>
+
+<div class="page-grid">
+  <div class="chat-wrapper fade-in">
+    <header>
+      <div class="titulo">
+        <h1>Voice of the Jungle</h1>
+      </div>
+      <p class="subtitulo">Ask anything you need to Voice of the Jungle</p>
+      <div class="divider"></div>
+      <button id="clear-chat" class="clear-button">🧹 Clear Chat</button>
+    </header>
+
+    <div id="chat-box" class="chat-box"></div>
+
+    <form class="input-area" id="chat-form">
+      <input type="text" id="user-input" placeholder="Escribe tu mensaje..." autocomplete="off" />
+      <button type="submit">Enviar</button>
+    </form>
+
+  </div>
+
+  <div class="intro-card fade-in">
+    <h2>¿No sabes por dónde empezar?</h2>
+    <p>Este asistente está diseñado para ayudarte con preguntas relacionadas a nuestro sitio. Aquí tienes algunos ejemplos:</p>
+    <ul>
+      <li class="sugerencia">💬 Dime curiosidades de animales</li>
+      <li class="sugerencia">🕒 ¿Qué son los animales domésticos?</li>
+      <li class="sugerencia">📍 ¿Cómo es el zoológico en ZooQuest?</li>
+      <li class="sugerencia">🦖 ¿Qué animales están en peligro de extinción?</li>
+      <li class="sugerencia">🦁 ¿Qué es ZooQuest?</li>
+      <li class="sugerencia">🗣️ ¿De qué temas puedes hablarme?</li>
+    </ul>
+  </div>
+</div>
+
+<div class="historial-container">
+  <h3>Historial de Conversación</h3>
+  <div class="botones-historial">
+    <button id="btn-actualizar-historial" class="btn-actualizar">🔄 Actualizar Historial</button>
+    <button id="btn-borrar-historial" class="btn-borrar">🗑️ Borrar Historial</button>
+  </div>
+  <div id="historial-list" class="historial-list">
+    <!-- Aquí se cargarán los mensajes -->
+  </div>
+</div>
+
+<audio id="send-sound" src="{{ url_for('static', filename='audio/send.mp3') }}"></audio>
+<audio id="receive-sound" src="{{ url_for('static', filename='audio/receive.mp3') }}"></audio>
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const form = document.getElementById('chat-form');
+    const input = document.getElementById('user-input');
+    const chatBox = document.getElementById('chat-box');
+    const clearBtn = document.getElementById('clear-chat');
+
+    const sendSound = document.getElementById('send-sound');
+    const receiveSound = document.getElementById('receive-sound');
+
+    async function enviarMensaje() {
+      const mensaje = input.value.trim();
+      if (mensaje === '') return;
+
+      // Reproducir sonido de envío
+      sendSound?.play();
+
+      // Agrega mensaje del usuario
+      chatBox.innerHTML += `<div class="mensaje usuario slide-in"><span>Tú:</span> ${mensaje}</div>`;
+
+      // Agrega animación de "escribiendo..."
+      const typingDiv = document.createElement("div");
+      typingDiv.classList.add("mensaje", "bot", "typing-indicator");
+      typingDiv.textContent = "Bot está escribiendo";
+      chatBox.appendChild(typingDiv);
+      chatBox.scrollTop = chatBox.scrollHeight;
+
+      input.value = '';
+
+      // Enviar al backend
+      const res = await fetch('/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: mensaje })
+      });
+
+      const data = await res.json();
+
+      // Esperar para simular escritura
+      await new Promise(resolve => setTimeout(resolve, 600));
+
+      // Quitar animación
+      chatBox.removeChild(typingDiv);
+
+      // Reproducir sonido de respuesta
+      receiveSound?.play();
+
+      // Mostrar respuesta del bot
+      chatBox.innerHTML += `<div class="mensaje bot slide-in"><span>Bot:</span> ${data.response}</div>`;
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      enviarMensaje();
+    });
+
+clearBtn.addEventListener('click', function () {
+  const mensajes = chatBox.querySelectorAll('.mensaje');
+
+  mensajes.forEach((msg, index) => {
+    setTimeout(() => {
+      msg.classList.add('float-away');
+    }, index * 60); // pequeño delay entre mensajes
+  });
+
+  setTimeout(() => {
+    chatBox.innerHTML = '';
+  }, 700); // espera a que todos se vayan antes de limpiar
+});
+
+
+    // Control para bloquear y habilitar sugerencias tras cada click
+    let sugerenciasHabilitadas = true;
+
+    const sugerencias = document.querySelectorAll('.sugerencia');
+
+    function bloquearSugerencias() {
+      sugerenciasHabilitadas = false;
+      sugerencias.forEach(item => {
+        item.style.pointerEvents = 'none';
+        item.style.opacity = '0.6';
+      });
+    }
+
+    function habilitarSugerencias() {
+      sugerenciasHabilitadas = true;
+      sugerencias.forEach(item => {
+        item.style.pointerEvents = 'auto';
+        item.style.opacity = '1';
+      });
+    }
+
+    // Inicialmente habilitar sugerencias
+    habilitarSugerencias();
+
+    sugerencias.forEach(item => {
+      item.addEventListener('click', () => {
+        if (!sugerenciasHabilitadas) return;
+
+        const texto = item.textContent.trim();
+        input.value = texto;
+        enviarMensaje();
+
+        bloquearSugerencias();
+        setTimeout(habilitarSugerencias, 2000);
+      });
+    });
+
+    // HISTORIAL
+    async function cargarHistorial() {
+      const res = await fetch('/historial');
+      const historial = await res.json();
+      const historialList = document.getElementById('historial-list');
+      historialList.innerHTML = '';
+
+      if (historial.length === 0) {
+        historialList.innerHTML = '<p>No messages in history.</p>';
+        return;
+      }
+
+      historial.forEach(item => {
+        const div = document.createElement('div');
+        div.classList.add('historial-item');
+        div.innerHTML = `
+          <div class="historial-fecha">You checked this message on ${item.fecha}</div>
+          <div class="historial-mensaje">${item.mensaje}</div>
+        `;
+        historialList.appendChild(div);
+      });
+    }
+
+    async function borrarHistorial() {
+      const res = await fetch('/borrar_historial', { method: 'DELETE' });
+      if (res.ok) {
+        cargarHistorial();
+        alert('History deleted successfully.');
+      } else {
+        alert('Error deleting history.');
+      }
+    }
+
+    document.getElementById('btn-actualizar-historial')
+      ?.addEventListener('click', () => {
+        cargarHistorial();
+      });
+
+    document.getElementById('btn-borrar-historial')
+      ?.addEventListener('click', () => {
+        if (confirm('Are you sure you want to delete all history?')) {
+          borrarHistorial();
+        }
+      });
+
+    // Cargar historial al inicio
+    cargarHistorial();
+
+    // Animación de bienvenida
+    const welcome = document.getElementById("welcome-screen");
+    if (welcome) {
+      setTimeout(() => {
+        welcome.style.animation = "fadeOut 1s ease forwards";
+        setTimeout(() => {
+          welcome.style.display = "none";
+        }, 1000);
+      }, 2000);
+    }
+  });
+</script>
+
+
+
+
+
+
+{% endblock %}

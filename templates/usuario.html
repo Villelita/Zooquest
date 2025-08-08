@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- AOS Animate on Scroll -->
+<link rel="stylesheet" href="/static/css/usuario.css">
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init();
+</script>
+
+<!-- Materialize CSS (por si no está en base.html) -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+
+<div class="container">
+  <div class="card profile-card z-depth-3">
+    <div class="row center-align">
+      <div class="col s12">
+        <img src="/static/uploads/{{ profile_image }}" alt="Perfil" class="profile-img" onerror="this.src='/static/img/Blueprint.png'">
+        <h5 style="font-size: 75px;" id="name">{{ name }}</h5>
+        <p class="grey-text" id="description">{{ description }}</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s12 m6">
+        <div class="info-box center-align">
+          <span class="label">⏱ Time on page</span>
+          <p id="playtime">{{ playtime }}</p>
+        </div>
+      </div>
+      <div class="col s12 m6">
+        <div class="info-box center-align">
+          <span class="label">🎂 Birthday</span>
+          <p id="birthday">{{ birthday }}</p>
+        </div>
+      </div>
+      </div>
+      <div class="center-align">
+        <button id="editprofile" class="button blue darken-1">EDIT PROFILE</button>
+        <a href="{{ url_for('logout') }}" id="logout" class="button red darken-1">LOGOUT</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal de edición de perfil -->
+<div id="modal-edit-profile" class="modal">
+  <div class="modal-content">
+    <h4>Edit Profile</h4>
+    <form id="editProfileForm" method="POST" action="/editar_perfil" enctype="multipart/form-data">
+      <div class="input-field">
+        <input id="nombre" name="nombre" type="text" class="validate" value="{{ name }}" required>
+        <label for="nombre" class="active">Name</label>
+      </div>
+      <div class="input-field">
+        <textarea id="descripcion" name="descripcion" class="materialize-textarea" required>{{ description }}</textarea>
+        <label for="descripcion" class="active">Description</label>
+      </div>
+      <div class="file-field input-field">
+        <div class="btn blue">
+          <span>Image</span>
+          <input type="file" name="imagen" accept="image/*">
+        </div>
+        <div class="file-path-wrapper">
+          <input class="file-path validate" type="text" placeholder="Upload a new profile image">
+        </div>
+      </div>
+      <div class="input-field">
+        <input id="cumpleanos" name="cumpleanos" type="date" class="datepicker" 
+               value="{{ birth_date.strftime('%Y-%m-%d') if birth_date else '' }}">
+        <label for="cumpleanos">Birthday</label>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="modal-close btn green">Save</button>
+        <button type="button" class="modal-close btn red">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Materialize JS (por si no está en base.html) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+<!-- Script para abrir el modal al hacer clic -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Inicializar modal
+    var modal = M.Modal.init(document.getElementById('modal-edit-profile'));
+    
+    // Inicializar datepicker
+    var datepicker = M.Datepicker.init(document.getElementById('cumpleanos'), {
+        format: 'yyyy-mm-dd',
+        i18n: {
+            months: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+            monthsShort: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+            weekdays: ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'],
+            weekdaysShort: ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],
+            cancel: 'Cancel',
+            clear: 'Clear',
+            done: 'OK'
+        }
+    });
+    
+    // Manejar el botón de editar perfil
+    document.getElementById('editprofile').addEventListener('click', function() {
+        modal.open();
+    });
+});
+</script>
+
+{% endblock %}
